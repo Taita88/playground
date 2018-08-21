@@ -2,6 +2,7 @@ package net.tibor.config;
 
 import net.tibor.security.CustomUserDetailsService;
 import net.tibor.security.JwtAuthenticationEntryPoint;
+import net.tibor.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -83,6 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
                     .permitAll()
                 .antMatchers(HttpMethod.GET, "api/polls/**", "/api/users/**")
+                    .permitAll()
+                .antMatchers(HttpMethod.GET, "/loris/**")
                     .permitAll()
                 .anyRequest()
                     .authenticated();
